@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ShellComponent } from './layout/shell/shell.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
+import { SampleModule } from './feature/sample/sample.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SidenavComponent } from './layout/sidenav/sidenav.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    SampleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

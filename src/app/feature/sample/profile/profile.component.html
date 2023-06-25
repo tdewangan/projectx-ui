@@ -1,0 +1,68 @@
+<form clrForm clrLayout="horizontal" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <clr-input-container>
+        <label class="clr-required-mark" for="first-name">First Name: </label>
+        <input clrInput id="first-name" type="text" formControlName="firstName" required>
+    </clr-input-container>
+    <clr-input-container>
+        <label for="last-name">Last Name: </label>
+        <input clrInput id="last-name" type="text" formControlName="lastName">
+    </clr-input-container>
+    <clr-select-container>
+        <label>Cars</label>
+        <select clrSelect name="cars" formControlName="cars">
+            <option *ngFor="let car of cars" [value]="car.id">{{car.name}}</option>
+            <option value="one">One</option>
+            <option value="two">Two</option>
+            <option value="three">Three</option>
+        </select>
+    </clr-select-container>
+    <clr-combobox-container>
+        <label>Cars</label>
+        <clr-combobox formControlName="cars1" name="myCars">
+            <clr-options>
+                <clr-option *clrOptionItems="let car of cars" [clrValue]="car.name">{{car.name}}</clr-option>
+            </clr-options>
+        </clr-combobox>
+    </clr-combobox-container>
+    <div formGroupName="address">
+        <h2>Address</h2>
+        <clr-input-container>
+            <label for="street">Street: </label>
+            <input clrInput id="street" type="text" formControlName="street">
+        </clr-input-container>
+        <clr-input-container>
+            <label for="city">City: </label>
+            <input clrInput id="city" type="text" formControlName="city">
+        </clr-input-container>
+        <clr-input-container>
+            <label for="state">State: </label>
+            <input clrInput id="state" type="text" formControlName="state">
+        </clr-input-container>
+        <clr-input-container>
+            <label for="zip">Zip Code: </label>
+            <input clrInput id="zip" type="text" formControlName="zip">
+        </clr-input-container>
+    </div>
+
+    <div formArrayName="aliases">
+        <h2>Aliases</h2>
+        <button class="btn btn-outline" type="button" (click)="addAlias()">+ Add another alias</button>
+
+        <div *ngFor="let alias of aliases.controls; let i=index">
+            <clr-input-container>
+                <label for="alias-{{ i }}">Alias:</label>
+                <input clrInput id="alias-{{ i }}" type="text" [formControlName]="i">
+            </clr-input-container>
+        </div>
+    </div>
+    <p>Complete the form to enable button.</p>
+    <button class="btn btn-primary" type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
+
+<hr>
+
+<p>Form Value: {{ profileForm.value | json }}</p>
+
+<p>Form Status: {{ profileForm.status }}</p>
+
+<button type="button" class="btn btn-outline" (click)=" updateProfile()">Update Profile</button>
