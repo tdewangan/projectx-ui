@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<clr-main-container>
+    <zul-navbar class="header-nav" [clr-nav-level]="1"></zul-navbar>
+    <div class="content-container">
+        <main class="content-area">
+            <router-outlet></router-outlet>
+        </main>
+        <clr-vertical-nav [clr-nav-level]="2">
+            ...
+        </clr-vertical-nav>
+    </div>
+</clr-main-container>
