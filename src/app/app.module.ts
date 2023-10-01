@@ -19,9 +19,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { SampleAdressFormComponent } from './sample/sample-adress-form/sample-adress-form.component';
 import { SampleTableComponent } from './sample/sample-table/sample-table.component';
+import { SpinnerComponent } from '@shared/components/loader/spinner.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { SampleTableComponent } from './sample/sample-table/sample-table.compone
     ShellComponent,
     SampleAdressFormComponent,
     SampleTableComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { SampleTableComponent } from './sample/sample-table/sample-table.compone
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
   ],
   providers: [],
