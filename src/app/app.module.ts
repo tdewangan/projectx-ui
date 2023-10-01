@@ -1,30 +1,40 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from '@shared/shared.module';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptor } from '@shared/interceptors/loader-interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ShellComponent } from './layout/shell/shell.component';
-import { NavbarComponent } from './layout/navbar/navbar.component';
-import { SidenavComponent } from './layout/sidenav/sidenav.component';
 import { SampleModule } from './feature/sample/sample.module';
+import { LoadingComponent } from './layout/loading/loading.component';
+import { NavbarComponent } from './layout/navbar/navbar.component';
+import { ShellComponent } from './layout/shell/shell.component';
+import { SidenavComponent } from './layout/sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShellComponent,
     NavbarComponent,
-    SidenavComponent
+    SidenavComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    SampleModule
+    SampleModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

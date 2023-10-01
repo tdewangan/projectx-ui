@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { LoaderService } from 'src/app/layout/loading/loader-service';
 
 @Component({
   selector: 'n-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   cars = [
     { id: 1, name: 'Volvo' },
     { id: 2, name: 'Saab', disabled: true },
@@ -22,25 +24,31 @@ export class ProfileComponent {
       street: [''],
       city: [''],
       state: [''],
-      zip: ['']
+      zip: [''],
     }),
-    aliases: this.fb.array([
-      this.fb.control('')
-    ])
+    aliases: this.fb.array([this.fb.control('')]),
   });
 
   get aliases() {
     return this.profileForm.get('aliases') as FormArray;
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private loader: LoaderService
+  ) {}
+
+  ngOnInit(): void {
+    this.http.get('https://reqres.in/api/products/3').subscribe();
+  }
 
   updateProfile() {
     this.profileForm.patchValue({
       firstName: 'Nancy',
       address: {
-        street: '123 Drew Street'
-      }
+        street: '123 Drew Street',
+      },
     });
   }
 
