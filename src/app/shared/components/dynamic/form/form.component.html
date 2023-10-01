@@ -1,0 +1,25 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Sample form</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngFor="let field of fields" class="form-row">
+        <zul-field [field]="field" [form]="form"></zul-field>
+      </div>
+      <div *ngIf="payLoad" class="form-row">
+        <strong>Saved the following values</strong><br />{{ payLoad }}
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        Save
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

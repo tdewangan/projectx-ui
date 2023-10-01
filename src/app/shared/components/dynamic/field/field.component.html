@@ -1,0 +1,32 @@
+<div [formGroup]="form">
+  <label [attr.for]="field.key">{{ field.label }}</label>
+  <div class="row">
+    <div class="col">
+      <div [ngSwitch]="field.controlType">
+        <mat-form-field *ngSwitchCase="'textbox'" class="full-width">
+          <input
+            matInput
+            [type]="field.type"
+            [placeholder]="field.label"
+            [formControlName]="field.key"
+          />
+        </mat-form-field>
+        <mat-form-field *ngSwitchCase="'textarea'" class="full-width">
+          <textarea
+            matInput
+            [placeholder]="field.label"
+            [formControlName]="field.key"
+          ></textarea>
+        </mat-form-field>
+        <mat-form-field *ngSwitchCase="'dropdown'" class="full-width">
+          <mat-select [placeholder]="field.label" [formControlName]="field.key">
+            <mat-option *ngFor="let opt of field.options" [value]="opt.key">
+              {{ opt.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="errorMessage" *ngIf="!isValid">{{ field.label }} is required</div>
+</div>
