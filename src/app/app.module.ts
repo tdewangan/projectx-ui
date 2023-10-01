@@ -24,6 +24,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SampleAdressFormComponent } from './sample/sample-adress-form/sample-adress-form.component';
 import { SampleTableComponent } from './sample/sample-table/sample-table.component';
 import { SpinnerComponent } from '@shared/components/loader/spinner.component';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,12 @@ import { SpinnerComponent } from '@shared/components/loader/spinner.component';
     MatProgressSpinnerModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
