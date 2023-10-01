@@ -7,6 +7,7 @@ import { SharedModule } from '@shared/shared.module';
 import { ShellComponent } from './layout/shell/shell.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SidenavComponent } from './layout/sidenav/sidenav.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
