@@ -4,10 +4,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from '@shared/shared.module';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoaderInterceptor } from '@shared/interceptors/loader-interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SampleModule } from './feature/sample/sample.module';
+import { LoaderInterceptor } from './layout/loading/loader-interceptor';
 import { LoadingComponent } from './layout/loading/loading.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { ShellComponent } from './layout/shell/shell.component';
