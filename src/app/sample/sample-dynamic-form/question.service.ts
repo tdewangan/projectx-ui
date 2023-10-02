@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
-import { CheckboxField } from '@shared/components/dynamic/core/field-checkbox';
-import { DropdownField } from '@shared/components/dynamic/core/field-dropdown';
-import { RadioGroupField } from '@shared/components/dynamic/core/field-radiogroup';
-import { TextareaField } from '@shared/components/dynamic/core/field-textarea';
-import { TextboxField } from '@shared/components/dynamic/core/field-textbox';
+import { BaseControl } from '@shared/components/dynamic/core/field-base';
 
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuestionService {
-  getQuestions() {
+  getQuestions(): Observable<any[]> {
     const questions = [
-      new DropdownField({
+      {
+        controlType: 'dropdown',
         key: 'brave',
         label: 'Bravery Rating',
         options: [
@@ -23,38 +20,43 @@ export class QuestionService {
           { key: 'unproven', value: 'Unproven' },
         ],
         order: 3,
-      }),
+      },
 
-      new TextboxField({
+      {
+        controlType: 'textbox',
         key: 'firstName',
         label: 'First name',
         value: 'Bombasto',
         required: true,
         order: 1,
-      }),
+      },
 
-      new TextboxField({
+      {
+        controlType: 'textbox',
         key: 'emailAddress',
         label: 'Email',
         type: 'email',
         order: 2,
-      }),
+      },
 
-      new TextareaField({
+      {
+        controlType: 'textarea',
         key: 'addressLine1',
         label: 'Address',
         type: 'textarea',
         order: 4,
-      }),
+      },
 
-      new TextboxField({
+      {
+        controlType: 'textbox',
         key: 'postalCode',
         label: 'Postal Code',
         type: 'number',
         order: 5,
-      }),
+      },
 
-      new RadioGroupField({
+      {
+        controlType: 'radiogroup',
         key: 'shipping',
         type: 'radiogroup',
         value: 'free',
@@ -64,15 +66,24 @@ export class QuestionService {
           { key: 'nextday', value: 'Next Day Shipping' },
         ],
         order: 6,
-      }),
+      },
 
-      new CheckboxField({
+      {
+        controlType: 'checkbox',
         key: 'privilege',
         type: 'checkbox',
         label: 'Privilege',
         order: 7,
         value: false,
-      }),
+      },
+
+      {
+        controlType: 'datepicker',
+        key: 'dateOfBirth',
+        type: 'datepicker',
+        label: 'Date of Birth',
+        order: 8,
+      },
     ];
 
     return of(questions.sort((a, b) => a.order - b.order));

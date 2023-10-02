@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FieldBase } from '../core/field-base';
+import { BaseControl } from '../core/field-base';
 
 @Component({
   selector: 'zul-field',
@@ -9,7 +9,7 @@ import { FieldBase } from '../core/field-base';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldComponent {
-  @Input() field!: FieldBase<string>;
+  @Input() field!: BaseControl;
   @Input() form!: FormGroup;
   get isValid() {
     return this.form.controls[this.field.key].valid;

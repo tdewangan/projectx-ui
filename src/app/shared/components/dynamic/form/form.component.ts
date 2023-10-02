@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormControlService } from './form-control.service';
-import { FieldBase } from '../core/field-base';
+import { BaseControl } from '../core/field-base';
 
 @Component({
   selector: 'zul-form',
@@ -10,14 +10,14 @@ import { FieldBase } from '../core/field-base';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent {
-  @Input() fields: FieldBase<string>[] | null = [];
+  @Input() fields: BaseControl[] | null = [];
   form!: FormGroup;
   payLoad = '';
 
   constructor(private fcs: FormControlService) {}
 
   ngOnInit() {
-    this.form = this.fcs.toFormGroup(this.fields as FieldBase<string>[]);
+    this.form = this.fcs.toFormGroup(this.fields as BaseControl[]);
   }
 
   onSubmit() {

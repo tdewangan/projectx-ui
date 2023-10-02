@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { FieldBase } from '@shared/components/dynamic/core/field-base';
+import { BaseControl } from '@shared/components/dynamic/core/field-base';
 import { QuestionService } from './question.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { QuestionService } from './question.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SampleDynamicFormComponent {
-  questions$: Observable<FieldBase<any>[]>;
+  questions$: Observable<BaseControl[]>;
 
   constructor(service: QuestionService) {
     this.questions$ = service.getQuestions();
