@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FieldBase } from '@shared/components/dynamic/core/field-base';
+import { CheckboxField } from '@shared/components/dynamic/core/field-checkbox';
 import { DropdownField } from '@shared/components/dynamic/core/field-dropdown';
+import { RadioGroupField } from '@shared/components/dynamic/core/field-radiogroup';
 import { TextareaField } from '@shared/components/dynamic/core/field-textarea';
 import { TextboxField } from '@shared/components/dynamic/core/field-textbox';
 
@@ -10,9 +11,8 @@ import { of } from 'rxjs';
   providedIn: 'root',
 })
 export class QuestionService {
-  // TODO: get from a remote source of question metadata
   getQuestions() {
-    const questions: FieldBase<string>[] = [
+    const questions = [
       new DropdownField({
         key: 'brave',
         label: 'Bravery Rating',
@@ -44,16 +44,37 @@ export class QuestionService {
         key: 'addressLine1',
         label: 'Address',
         type: 'textarea',
-        order: 2,
+        order: 4,
+      }),
+
+      new TextboxField({
+        key: 'postalCode',
+        label: 'Postal Code',
+        type: 'number',
+        order: 5,
+      }),
+
+      new RadioGroupField({
+        key: 'shipping',
+        type: 'radiogroup',
+        value: 'free',
+        options: [
+          { key: 'free', value: 'Free Shipping' },
+          { key: 'priority', value: 'Priority Shipping' },
+          { key: 'nextday', value: 'Next Day Shipping' },
+        ],
+        order: 6,
+      }),
+
+      new CheckboxField({
+        key: 'privilege',
+        type: 'checkbox',
+        label: 'Privilege',
+        order: 7,
+        value: false,
       }),
     ];
 
     return of(questions.sort((a, b) => a.order - b.order));
   }
 }
-
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at https://angular.io/license
-*/

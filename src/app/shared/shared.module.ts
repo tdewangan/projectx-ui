@@ -15,12 +15,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { FieldComponent } from './components/dynamic/field/field.component';
 import { FormComponent } from './components/dynamic/form/form.component';
 
 const MaterialModules = [
   MatToolbarModule,
+  MatCheckboxModule,
   MatButtonModule,
   MatSidenavModule,
   MatIconModule,

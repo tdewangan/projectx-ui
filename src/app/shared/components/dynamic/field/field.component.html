@@ -1,5 +1,7 @@
 <div [formGroup]="form">
-  <label [attr.for]="field.key">{{ field.label }}</label>
+  <label [attr.for]="field.key" *ngIf="field.controlType !== 'checkbox'">
+    {{ field.label }}
+  </label>
   <div class="row">
     <div class="col">
       <div [ngSwitch]="field.controlType">
@@ -25,6 +27,19 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-radio-group
+          *ngSwitchCase="'radiogroup'"
+          [formControlName]="field.key"
+        >
+          <mat-radio-button *ngFor="let opt of field.options" [value]="opt.key">
+            {{ opt.value }}
+          </mat-radio-button>
+        </mat-radio-group>
+        <mat-checkbox
+          *ngSwitchCase="'checkbox'"
+          [formControlName]="field.key"
+          >{{ field.label }}</mat-checkbox
+        >
       </div>
     </div>
   </div>
